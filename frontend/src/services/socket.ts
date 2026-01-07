@@ -5,10 +5,7 @@ class SocketService {
 
   connect() {
     if (!this.socket) {
-      const socketUrl = process.env.NODE_ENV === 'production' 
-        ? 'https://your-backend-url.onrender.com'
-        : 'http://localhost:5000';
-      this.socket = io(socketUrl);
+      this.socket = io('https://surveyhub-backend.onrender.com');
     }
     return this.socket;
   }

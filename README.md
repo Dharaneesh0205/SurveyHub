@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # 📊 SurveyHub - Survey & Feedback Web App
 
 A full-stack survey application built with React, Node.js, Express, and MongoDB. Users can create surveys, collect responses, and view analytics with interactive charts.
@@ -248,3 +249,6 @@ Create an issue on GitHub for support.
 ---
 
 Built with ❤️ for survey and feedback collection
+=======
+# SurveyHub
+>>>>>>> 8a14f06acdda3337dd7503b0aa2fce73906e667e
