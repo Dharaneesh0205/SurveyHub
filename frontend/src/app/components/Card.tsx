@@ -1,0 +1,24 @@
+import React from 'react';
+import { clsx } from 'clsx';
+
+interface CardProps {
+  children: React.ReactNode;
+  className?: string;
+  onClick?: () => void;
+}
+
+export function Card({ children, className, onClick }: CardProps) {
+  return (
+    <div
+      className={clsx(
+        'bg-white rounded-2xl border border-gray-100 shadow-sm backdrop-blur-sm',
+        'transition-all duration-200',
+        onClick && 'cursor-pointer hover:shadow-md',
+        className
+      )}
+      onClick={onClick}
+    >
+      {children}
+    </div>
+  );
+}
