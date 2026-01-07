@@ -4,7 +4,7 @@ SurveyHub is a full-stack survey and feedback web application built with React (
 
 Live Demo
 
-- Hosted app: https://survey-hub-chi.vercel.app/login
+- Hosted app: [https://survey-hub-chi.vercel.app/login](https://survey-hub-chi.vercel.app/)
 
 Features
 
