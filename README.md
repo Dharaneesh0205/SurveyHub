@@ -10,7 +10,8 @@ Features
 
 - User authentication (JWT)
 - Create surveys with multiple choice and text questions
-- Share public survey links to collect responses
+- Create surveys with custom inbuilt templates 
+- Share public survey links and QR code to collect responses
 - Analytics dashboard with charts
 - Responsive UI built with Tailwind CSS and Radix UI
 
