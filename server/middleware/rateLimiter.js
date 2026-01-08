@@ -28,6 +28,6 @@ const rateLimit = (windowMs, max, message = 'Too many requests') => {
 };
 
 // Rate limiting configurations
-export const authLimiter = rateLimit(15 * 60 * 1000, 5, 'Too many authentication attempts');
+export const authLimiter = rateLimit(15 * 60 * 1000, 100, 'Too many authentication attempts');
 export const apiLimiter = rateLimit(15 * 60 * 1000, 100, 'Too many API requests');
 export const responseLimiter = rateLimit(60 * 1000, 10, 'Too many survey submissions');
