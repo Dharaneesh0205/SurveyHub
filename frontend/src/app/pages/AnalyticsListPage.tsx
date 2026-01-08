@@ -18,15 +18,15 @@ export function AnalyticsListPage() {
     <Layout>
       <div className="space-y-8">
         {/* Header */}
-        <div>
-          <h1 className="text-3xl font-bold text-gray-900 mb-2">Analytics</h1>
+        <div className="space-y-2">
+          <h1 className="text-3xl font-bold text-gray-900">Analytics</h1>
           <p className="text-gray-600">
             View detailed analytics and insights for all your surveys
           </p>
         </div>
 
         {/* Surveys Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 lg:gap-6">
           {surveys.map((survey) => (
             <Card key={survey.id} className="p-6 border-0 shadow-sm hover:shadow-md transition-all duration-200">
               <div className="flex items-start justify-between mb-4">

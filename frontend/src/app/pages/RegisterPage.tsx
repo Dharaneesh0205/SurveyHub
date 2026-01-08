@@ -13,14 +13,18 @@ export function RegisterPage() {
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (password !== confirmPassword) {
       alert('Passwords do not match');
       return;
     }
-    register(name, email, password);
-    navigate('/dashboard');
+    try {
+      await register(name, email, password);
+      navigate('/dashboard');
+    } catch {
+      // register handles toast; stay on page
+    }
   };
 
   return (

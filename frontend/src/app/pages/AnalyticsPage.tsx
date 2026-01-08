@@ -57,37 +57,47 @@ export function AnalyticsPage() {
   };
 
   useEffect(() => {
+    let isMounted = true;
+
     const fetchAnalytics = async () => {
       try {
-        if (id) {
-          const data = await getSurveyResults(id);
+        if (!id || !isMounted) return;
+        const data = await getSurveyResults(id);
+        if (isMounted) {
           setAnalytics(data);
-          
-          // Connect to socket and join survey room for real-time updates
-          socketService.connect();
-          socketService.joinSurvey(id);
-          
-          // Listen for new responses
-          socketService.onNewResponse((data) => {
-            if (data.surveyId === id) {
-              toast.success('New response received!');
-              // Refresh analytics data
-              fetchAnalytics();
-            }
-          });
         }
       } catch (error) {
-        toast.error('Failed to load analytics');
+        if (isMounted) {
+          toast.error('Failed to load analytics');
+        }
       } finally {
-        setLoading(false);
+        if (isMounted) {
+          setLoading(false);
+        }
       }
     };
 
+    // Initial fetch
+    setLoading(true);
     fetchAnalytics();
-    
-    // Cleanup on unmount
+
+    // Socket setup (single subscription per survey id)
+    const socket = socketService.connect();
+    socketService.joinSurvey(id || '');
+
+    const handleNewResponse = (data: any) => {
+      if (data.surveyId === id) {
+        toast.success('New response received!');
+        fetchAnalytics();
+      }
+    };
+
+    socketService.onNewResponse(handleNewResponse);
+
     return () => {
+      isMounted = false;
       socketService.offNewResponse();
+      socket?.disconnect();
     };
   }, [id]);
 
@@ -118,22 +128,22 @@ export function AnalyticsPage() {
     <Layout>
       <div className="space-y-8">
         {/* Header */}
-        <div className="flex items-center gap-4">
-          <Button variant="ghost" onClick={handleBackNavigation} className="shrink-0">
-            <ArrowLeft className="w-5 h-5" />
-          </Button>
-          <div className="flex-1">
-            <h1 className="text-3xl text-gray-900 mb-1">Survey Analytics</h1>
-            <p className="text-gray-600">
-              Total Responses: {analytics.totalResponses}
-            </p>
+        <div className="flex flex-col gap-4 lg:flex-row lg:items-center lg:gap-6">
+          <div className="flex items-center gap-3">
+            <Button variant="ghost" onClick={handleBackNavigation} className="shrink-0">
+              <ArrowLeft className="w-5 h-5" />
+            </Button>
+            <div>
+              <h1 className="text-3xl text-gray-900 leading-tight">Survey Analytics</h1>
+              <p className="text-gray-600">Total Responses: {analytics.totalResponses}</p>
+            </div>
           </div>
-          <div className="flex gap-2">
-            <Button variant="secondary" onClick={exportCSV} size="sm">
+          <div className="flex flex-wrap gap-2 w-full lg:w-auto lg:justify-end">
+            <Button variant="secondary" onClick={exportCSV} size="sm" className="flex-1 min-w-[140px] lg:flex-none">
               <Download className="w-4 h-4 mr-2" />
               Export CSV
             </Button>
-            <Button variant="secondary" onClick={exportToPDF} size="sm">
+            <Button variant="secondary" onClick={exportToPDF} size="sm" className="flex-1 min-w-[140px] lg:flex-none">
               <FileText className="w-4 h-4 mr-2" />
               Export PDF
             </Button>

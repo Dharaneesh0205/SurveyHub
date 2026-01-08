@@ -118,15 +118,15 @@ export function CreateSurveyPage() {
     <Layout>
       <div className="space-y-8">
         {/* Header */}
-        <div className="flex items-center justify-between">
-          <div>
-            <h1 className="text-3xl font-bold text-gray-900 mb-2">Create Survey</h1>
+        <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
+          <div className="space-y-1">
+            <h1 className="text-3xl font-bold text-gray-900">Create Survey</h1>
             <p className="text-gray-600">Design your survey with custom questions</p>
           </div>
           <Button 
             onClick={() => setShowTemplates(!showTemplates)} 
             variant="secondary"
-            className="flex items-center gap-2"
+            className="flex items-center gap-2 w-full sm:w-auto justify-center"
           >
             <Sparkles className="w-4 h-4" />
             Use Template
@@ -137,7 +137,7 @@ export function CreateSurveyPage() {
         {showTemplates && (
           <Card className="p-6">
             <h3 className="text-lg font-semibold text-gray-900 mb-4">Choose a Template</h3>
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
               {surveyTemplates.map((template) => (
                 <div 
                   key={template.id}
@@ -175,9 +175,9 @@ export function CreateSurveyPage() {
 
         {/* Questions */}
         <div className="space-y-4">
-          <div className="flex items-center justify-between">
+          <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
             <h2 className="text-xl text-gray-900">Questions</h2>
-            <Button onClick={addQuestion} variant="secondary" size="sm">
+            <Button onClick={addQuestion} variant="secondary" size="sm" className="w-full sm:w-auto justify-center">
               <Plus className="w-4 h-4 mr-2" />
               Add Question
             </Button>
@@ -214,7 +214,7 @@ export function CreateSurveyPage() {
                     <div className="space-y-3">
                       <label className="block text-sm text-gray-700">Options</label>
                       {question.options?.map((option, oIndex) => (
-                        <div key={oIndex} className="flex items-center gap-2">
+                        <div key={oIndex} className="flex flex-col gap-2 sm:flex-row sm:items-center sm:gap-2">
                           <Input
                             placeholder={`Option ${oIndex + 1}`}
                             value={option}
@@ -224,7 +224,7 @@ export function CreateSurveyPage() {
                           />
                           <button
                             onClick={() => removeOption(question.id, oIndex)}
-                            className="text-red-600 hover:text-red-700 p-2"
+                            className="text-red-600 hover:text-red-700 p-2 self-start sm:self-auto"
                           >
                             <Trash2 className="w-4 h-4" />
                           </button>
@@ -255,11 +255,11 @@ export function CreateSurveyPage() {
         </div>
 
         {/* Actions */}
-        <div className="flex items-center justify-end gap-3">
-          <Button variant="secondary" onClick={() => navigate('/surveys')}>
+        <div className="flex flex-col sm:flex-row sm:items-center sm:justify-end gap-3">
+          <Button variant="secondary" onClick={() => navigate('/surveys')} className="w-full sm:w-auto justify-center">
             Cancel
           </Button>
-          <Button onClick={handleSave}>Save Survey</Button>
+          <Button onClick={handleSave} className="w-full sm:w-auto justify-center">Save Survey</Button>
         </div>
       </div>
     </Layout>
