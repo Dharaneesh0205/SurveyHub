@@ -85,9 +85,9 @@ export function CreateSurveyPage() {
       questions.map((q) =>
         q.id === questionId
           ? {
-              ...q,
-              options: q.options?.map((opt, i) => (i === index ? value : opt)),
-            }
+            ...q,
+            options: q.options?.map((opt, i) => (i === index ? value : opt)),
+          }
           : q
       )
     );
@@ -123,8 +123,8 @@ export function CreateSurveyPage() {
             <h1 className="text-3xl font-bold text-gray-900">Create Survey</h1>
             <p className="text-gray-600">Design your survey with custom questions</p>
           </div>
-          <Button 
-            onClick={() => setShowTemplates(!showTemplates)} 
+          <Button
+            onClick={() => setShowTemplates(!showTemplates)}
             variant="secondary"
             className="flex items-center gap-2 w-full sm:w-auto justify-center"
           >
@@ -139,7 +139,7 @@ export function CreateSurveyPage() {
             <h3 className="text-lg font-semibold text-gray-900 mb-4">Choose a Template</h3>
             <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
               {surveyTemplates.map((template) => (
-                <div 
+                <div
                   key={template.id}
                   className="p-4 border border-gray-200 rounded-xl hover:border-blue-300 cursor-pointer transition-colors"
                   onClick={() => useTemplate(template)}

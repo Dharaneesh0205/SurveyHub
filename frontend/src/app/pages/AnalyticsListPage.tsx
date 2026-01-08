@@ -34,11 +34,10 @@ export function AnalyticsListPage() {
                   <BarChart3 className="w-6 h-6 text-blue-600" />
                 </div>
                 <span
-                  className={`px-3 py-1 rounded-full text-xs font-medium ${
-                    survey.isActive
+                  className={`px-3 py-1 rounded-full text-xs font-medium ${survey.isActive
                       ? 'bg-emerald-100 text-emerald-700'
                       : 'bg-gray-100 text-gray-600'
-                  }`}
+                    }`}
                 >
                   {survey.isActive ? 'Active' : 'Inactive'}
                 </span>
@@ -47,7 +46,7 @@ export function AnalyticsListPage() {
               <h3 className="text-lg font-semibold text-gray-900 mb-2 line-clamp-2">
                 {survey.title}
               </h3>
-              
+
               <p className="text-sm text-gray-600 mb-4 line-clamp-2">
                 {survey.description}
               </p>
@@ -71,7 +70,7 @@ export function AnalyticsListPage() {
                   <BarChart3 className="w-4 h-4 mr-2" />
                   View Analytics
                 </Button>
-                
+
                 <Button
                   variant="secondary"
                   onClick={() => navigate(`/survey/${survey.id}`)}

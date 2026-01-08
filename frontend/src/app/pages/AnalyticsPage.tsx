@@ -186,8 +186,8 @@ export function AnalyticsPage() {
                                   ))}
                                 </Pie>
                                 <Tooltip formatter={(value, name) => [value, name]} />
-                                <Legend 
-                                  verticalAlign="bottom" 
+                                <Legend
+                                  verticalAlign="bottom"
                                   height={36}
                                   formatter={(value, entry) => `${value} (${entry.payload.value})`}
                                 />
@@ -198,13 +198,13 @@ export function AnalyticsPage() {
                           {/* Bar Chart */}
                           <div className="h-80">
                             <ResponsiveContainer width="100%" height="100%">
-                              <BarChart 
+                              <BarChart
                                 data={Object.entries(question.data).map(([name, value]) => ({ name, value }))}
                                 margin={{ top: 20, right: 30, left: 20, bottom: 60 }}
                               >
                                 <CartesianGrid strokeDasharray="3 3" />
-                                <XAxis 
-                                  dataKey="name" 
+                                <XAxis
+                                  dataKey="name"
                                   angle={-45}
                                   textAnchor="end"
                                   height={80}

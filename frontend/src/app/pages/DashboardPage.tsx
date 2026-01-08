@@ -13,15 +13,15 @@ export function DashboardPage() {
 
   useEffect(() => {
     fetchSurveys();
-    
+
     // Connect to socket for real-time updates
     socketService.connect();
-    
+
     // Listen for new responses across all surveys
     socketService.onNewResponse(() => {
       fetchSurveys(); // Refresh survey data when new responses come in
     });
-    
+
     return () => {
       socketService.offNewResponse();
     };
@@ -122,11 +122,10 @@ export function DashboardPage() {
                       <span className="font-medium">{survey.responseCount} responses</span>
                       <span className="hidden sm:inline">•</span>
                       <span
-                        className={`px-3 py-1 rounded-full text-xs font-medium ${
-                          survey.isActive
+                        className={`px-3 py-1 rounded-full text-xs font-medium ${survey.isActive
                             ? 'bg-emerald-100 text-emerald-700'
                             : 'bg-gray-100 text-gray-600'
-                        }`}
+                          }`}
                       >
                         {survey.isActive ? 'Active' : 'Inactive'}
                       </span>
